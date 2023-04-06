@@ -17,12 +17,27 @@ app.use(express.json());
  *
  */
 // middleware
-const logger = (req, res, next) => {
-  console.log('In middleware logger');
-  next();
-};
+// const logger = (req, res, next) => {
+//   console.log('In middleware logger');
+//   next();
+// };
 
-app.use(logger);
+//Chaning Middleware
+app
+  .use((req, res, next) => {
+    console.log('In First middleware logger');
+    next();
+  })
+  .use((req, res, next) => {
+    console.log('In Second middleware logger');
+    next();
+  })
+  .use((req, res, next) => {
+    console.log('In  Third middleware logger');
+    next();
+  });
+
+// app.use(logger);
 
 // ---------
 // ROUTES
