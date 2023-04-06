@@ -9,6 +9,21 @@ app.listen(9000, () => console.log('Server connectd'));
 //Parse data
 app.use(express.json());
 
+/**
+ *
+ * Create middleware
+ * Middleware knows the req, res and
+ * the next function/operation
+ *
+ */
+// middleware
+const logger = (req, res, next) => {
+  console.log('In middleware logger');
+  next();
+};
+
+app.use(logger);
+
 // ---------
 // ROUTES
 // -----------
@@ -46,5 +61,12 @@ app.post('/posts', (req, res) => {
   res.json({
     statusCode: 200,
     message: 'Posted successfully',
+  });
+});
+
+app.delete('/posts/:1d', (req, res) => {
+  res.json({
+    statusCode: 200,
+    message: 'Delete successfully',
   });
 });
