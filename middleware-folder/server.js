@@ -1,6 +1,5 @@
-const e = require('express');
 const express = require('express');
-
+const morgan = require('morgan');
 //init server
 app = express();
 
@@ -39,6 +38,7 @@ app.use(express.json());
 //   });
 
 // app.use(logger);
+app.use(morgan('combined'));
 
 // PRotected Middleware
 const protected = (req, res, next) => {
@@ -59,7 +59,7 @@ const protected = (req, res, next) => {
 // PRotected Middleware
 const isAdmin = (req, res, next) => {
   const userDetails = {
-    isAdmin: false,
+    isAdmin: true,
     username: 'John',
   };
 
@@ -70,6 +70,17 @@ const isAdmin = (req, res, next) => {
       message: 'Unauthorized, Not an Admin',
     });
   }
+};
+
+// middleware to log the url, request method date and time
+
+const logDetials = (req, res, next) => {
+  const method = req.method;
+  const url = req.url;
+  const date = new Date().toDateString();
+
+  console.log(`${method} ${url} ${date}`);
+  next();
 };
 
 // ---------
@@ -113,7 +124,7 @@ app.post('/posts', protected, (req, res) => {
 });
 
 // Protected
-app.delete('/posts/:id', isAdmin, (req, res) => {
+app.delete('/posts/:id', isAdmin, logDetials, (req, res) => {
   const { id } = req.params;
 
   res.json({
