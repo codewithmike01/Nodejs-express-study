@@ -1,0 +1,48 @@
+* {
+  margin: 0;
+
+  padding: 0;
+  box-sizing: border-box;
+}
+h1 {
+  color: red;
+}
+img {
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 2px #ccc;
+  height: 500px;
+  width: 700px;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background: #f5f5f5;
+}
+nav a {
+  color: rgb(40, 0, 126);
+  text-decoration: none;
+}
+nav a:hover {
+  color: #000;
+  text-decoration: underline;
+}
+
+nav li {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
