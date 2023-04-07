@@ -37,6 +37,8 @@ app.use(express.json());
 //     next();
 //   });
 
+let requestCount = 0;
+
 // app.use(logger);
 app.use(morgan('combined'));
 
@@ -73,7 +75,7 @@ const isAdmin = (req, res, next) => {
 };
 
 // middleware to log the url, request method date and time
-
+//Challenge Solution 1
 const logDetials = (req, res, next) => {
   const method = req.method;
   const url = req.url;
@@ -83,6 +85,19 @@ const logDetials = (req, res, next) => {
   next();
 };
 
+//Challenge Solution 2
+const limitRequest = (req, res, next) => {
+  requestCount++;
+  console.log(requestCount);
+  if (count >= 10) {
+    res.json({
+      statusCode: 429,
+      message: 'Too many request',
+    });
+  } else {
+    next();
+  }
+};
 // ---------
 // ROUTES
 // -----------
@@ -107,7 +122,7 @@ app.post('/login', (req, res) => {
 
 // Public role
 // Get Post
-app.get('/posts', (req, res) => {
+app.get('/posts', limitRequest, (req, res) => {
   res.json({
     stausCode: 200,
     message: 'Post got Successful',
