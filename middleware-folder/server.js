@@ -1,3 +1,4 @@
+const e = require('express');
 const express = require('express');
 
 //init server
@@ -23,21 +24,53 @@ app.use(express.json());
 // };
 
 //Chaning Middleware
-app
-  .use((req, res, next) => {
-    console.log('In First middleware logger');
-    next();
-  })
-  .use((req, res, next) => {
-    console.log('In Second middleware logger');
-    next();
-  })
-  .use((req, res, next) => {
-    console.log('In  Third middleware logger');
-    next();
-  });
+// app
+//   .use((req, res, next) => {
+//     console.log('In First middleware logger');
+//     next();
+//   })
+//   .use((req, res, next) => {
+//     console.log('In Second middleware logger');
+//     next();
+//   })
+//   .use((req, res, next) => {
+//     console.log('In  Third middleware logger');
+//     next();
+//   });
 
 // app.use(logger);
+
+// PRotected Middleware
+const protected = (req, res, next) => {
+  const userDetails = {
+    isLogin: false,
+    username: 'John',
+  };
+
+  if (userDetails.isLogin) next();
+  else {
+    res.json({
+      stausCode: 401,
+      message: 'Unauthorized',
+    });
+  }
+};
+
+// PRotected Middleware
+const isAdmin = (req, res, next) => {
+  const userDetails = {
+    isAdmin: false,
+    username: 'John',
+  };
+
+  if (userDetails.isAdmin) next();
+  else {
+    res.json({
+      stausCode: 401,
+      message: 'Unauthorized, Not an Admin',
+    });
+  }
+};
 
 // ---------
 // ROUTES
@@ -72,16 +105,19 @@ app.get('/posts', (req, res) => {
 
 // Auth User
 // Create post
-app.post('/posts', (req, res) => {
+app.post('/posts', protected, (req, res) => {
   res.json({
     statusCode: 200,
     message: 'Posted successfully',
   });
 });
 
-app.delete('/posts/:1d', (req, res) => {
+// Protected
+app.delete('/posts/:id', isAdmin, (req, res) => {
+  const { id } = req.params;
+
   res.json({
     statusCode: 200,
-    message: 'Delete successfully',
+    message: `Delete successfully ${id}`,
   });
 });
