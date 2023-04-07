@@ -9,14 +9,14 @@ app.use(express.json());
 // configure to parse data from form
 app.use(express.urlencoded({ extended: true }));
 
+// Use a middleware
+app.use(express.static('public'));
+
 //Listen to port
 app.listen(9000, () => console.log('Server Connected!!!'));
 
 /** Server static file
  *  From public folder */
-
-// Use a middleware
-app.use(express.static('public'));
 
 /**
  *
@@ -42,8 +42,6 @@ app.get('/addPost', (req, res) => {
 
 //--- Get post form
 app.post('/addPost', (req, res) => {
-  console.log('In podt herer');
-
   const { title, url, body } = req.body;
 
   res.json({
