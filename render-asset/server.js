@@ -31,7 +31,7 @@ app.get('/about', (req, res) => {
 });
 
 //--- Add post
-app.post('/post', (req, res) => {
+app.post('/posts', (req, res) => {
   res.json({
     statusCode: 200,
     message: 'Welcome Post Add',
@@ -39,7 +39,7 @@ app.post('/post', (req, res) => {
 });
 
 //--- Get post form
-app.get('/post', (req, res) => {
+app.get('/posts', (req, res) => {
   res.json({
     statusCode: 200,
     message: 'Welcome Post form',
