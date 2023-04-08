@@ -26,4 +26,26 @@ app.get('/profile', (req, res) => {
   res.render('profile', { user });
 });
 
+app.get('/posts', (req, res) => {
+  const posts = [
+    {
+      title: 'Home of Rust',
+      desc: 'Rusty Rusty Get the Job done',
+      date: '10-20-2024',
+    },
+    {
+      title: 'Gilad Giants',
+      desc: 'Frosty Beans from jack stalks',
+      date: '10-28-2024',
+    },
+    {
+      title: 'Homeloon lonly',
+      desc: 'Screem screem hear ye the lone in your lonly',
+      date: '10-24-2024',
+    },
+  ];
+
+  res.render('posts', { posts });
+});
+
 app.listen(9000, () => console.log('Server Connected'));
