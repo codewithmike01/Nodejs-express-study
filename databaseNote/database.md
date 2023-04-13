@@ -41,3 +41,11 @@
 - Document is a data in a mongo DB collection
 
 - Fields are individual pices of sata in a document.
+
+### How we use MongoDB
+
+#### Two ways
+
+- MongoDB shell : Using mongoDB wuthout a programmign language using the terminal. but it has limited functionality and only used as a play ground for workng with MongoDB
+
+- MongoDB drivers: Using MongoDB with a programming language. drivers help us to interact with a specific programming language.
