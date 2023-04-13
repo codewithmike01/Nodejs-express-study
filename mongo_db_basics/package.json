@@ -1,0 +1,14 @@
+{
+  "name": "mongo_db_basics",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Mike",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^5.2.0"
+  }
+}
