@@ -32,4 +32,12 @@
 - Document oriented ( working with Object Oriented Programming)
 - High performace, using index base search algorithm that enables first serch of data (Suitable for large scale applications).
 
-### TErms in MongoDB
+### Terminology in MongoDB
+
+- Database is a container for storing collection.
+
+- Collection is a group/related of documents
+
+- Document is a data in a mongo DB collection
+
+- Fields are individual pices of sata in a document.
