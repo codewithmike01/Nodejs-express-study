@@ -52,12 +52,12 @@ const dbConnect = async () => {
     // ];
 
     // Send doc to mangodb
-    const result = await studnents.insertOne({
-      name: 'Samuel Shew',
-      email: 'Vashaw@gmail.com',
-      age: 28,
-      major: 'Aero Specialist',
-    });
+    // const result = await studnents.insertOne({
+    //   name: 'Samuel Shew',
+    //   email: 'Vashaw@gmail.com',
+    //   age: 28,
+    //   major: 'Aero Specialist',
+    // });
     // const result = await studnents.insertMany(studentDocs);
 
     //  Find a new Documnet
@@ -67,8 +67,16 @@ const dbConnect = async () => {
     // const allStudents = await studnents.findOne({ age: 20 });
 
     // Query
-    const allStudents = await studnents.find({ age: 28 }).toArray();
-    console.log(allStudents);
+    // const allStudents = await studnents.find({ age: 28 }).toArray();
+
+    // update record
+    // const resultUpdate = await studnents.updateOne(
+    //   { age: 20 },
+    //   { $set: { name: 'Age Changer', email: 'AgeChanger@gmail.com' } }
+    // );
+
+    const deleteRecord = await studnents.deleteOne({ age: 20 });
+    console.log(deleteRecord);
   } catch (err) {
     console.log(err);
   }
