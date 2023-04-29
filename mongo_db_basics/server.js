@@ -22,12 +22,12 @@ const dbConnect = async () => {
     const studnents = db.collection('students');
 
     // Create One Document
-    // const doc = {
-    //   name: 'Vashaw Shew',
-    //   email: 'Vashaw@gmail.com',
-    //   age: 24,
-    //   major: 'Mathematics',
-    // };
+    const doc = {
+      name: 'Samuel Shew',
+      email: 'Vashaw@gmail.com',
+      age: 28,
+      major: 'Aero Specialist',
+    };
 
     // Create Many Documents
     // const studentDocs = [
@@ -52,12 +52,14 @@ const dbConnect = async () => {
     // ];
 
     // Send doc to mangodb
-    // const result = await studnents.insertOne(doc);
+    const result = await studnents.insertOne(doc);
     // const result = await studnents.insertMany(studentDocs);
 
     //  Find a new Documnet
+    // const allStudents = await studnents.find().toArray();
 
-    const allStudents = await studnents.find().toArray();
+    // Query
+    const allStudents = await studnents.findOne({ age: 28 });
     console.log(allStudents);
   } catch (err) {
     console.log(err);
