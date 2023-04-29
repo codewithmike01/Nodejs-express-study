@@ -21,19 +21,41 @@ const dbConnect = async () => {
     // Create collection
     const studnents = db.collection('students');
 
-    // Create Document
-    const doc = {
-      name: 'Vashaw Shew',
-      email: 'Vashaw@gmail.com',
-      age: 24,
-      major: 'Mathematics',
-    };
+    // Create One Document
+    // const doc = {
+    //   name: 'Vashaw Shew',
+    //   email: 'Vashaw@gmail.com',
+    //   age: 24,
+    //   major: 'Mathematics',
+    // };
+
+    // Create Many Documents
+    const studentDocs = [
+      {
+        name: 'Linkko Seem',
+        email: 'Linkko@gmail.com',
+        age: 28,
+        major: 'English',
+      },
+      {
+        name: 'John Deo',
+        email: 'JohnDoe@gmail.com',
+        age: 23,
+        major: 'Robotics',
+      },
+      {
+        name: 'Jack Fisher',
+        email: 'Jackfish@gmail.com',
+        age: 20,
+        major: 'Psyco therapist',
+      },
+    ];
 
     // Send doc to mangodb
-    const result = await studnents.insertOne(doc);
+    // const result = await studnents.insertOne(doc);
+    const result = await studnents.insertMany(studentDocs);
 
     console.log(result);
-    console.log(studnents);
   } catch (err) {
     console.log(err);
   }
