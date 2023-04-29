@@ -30,32 +30,35 @@ const dbConnect = async () => {
     // };
 
     // Create Many Documents
-    const studentDocs = [
-      {
-        name: 'Linkko Seem',
-        email: 'Linkko@gmail.com',
-        age: 28,
-        major: 'English',
-      },
-      {
-        name: 'John Deo',
-        email: 'JohnDoe@gmail.com',
-        age: 23,
-        major: 'Robotics',
-      },
-      {
-        name: 'Jack Fisher',
-        email: 'Jackfish@gmail.com',
-        age: 20,
-        major: 'Psyco therapist',
-      },
-    ];
+    // const studentDocs = [
+    //   {
+    //     name: 'Linkko Seem',
+    //     email: 'Linkko@gmail.com',
+    //     age: 28,
+    //     major: 'English',
+    //   },
+    //   {
+    //     name: 'John Deo',
+    //     email: 'JohnDoe@gmail.com',
+    //     age: 23,
+    //     major: 'Robotics',
+    //   },
+    //   {
+    //     name: 'Jack Fisher',
+    //     email: 'Jackfish@gmail.com',
+    //     age: 20,
+    //     major: 'Psyco therapist',
+    //   },
+    // ];
 
     // Send doc to mangodb
     // const result = await studnents.insertOne(doc);
-    const result = await studnents.insertMany(studentDocs);
+    // const result = await studnents.insertMany(studentDocs);
 
-    console.log(result);
+    //  Find a new Documnet
+
+    const allStudents = await studnents.find().toArray();
+    console.log(allStudents);
   } catch (err) {
     console.log(err);
   }
