@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 mongoose
   .connect(
-    'mongodb+srv://kanumikechibundu:QOZc1s0sHWmAV7LO@mongodb-demo.roz9auo.mongodb.net/?retryWrites=true&w=majority'
+    'mongodb+srv://kanumikechibundu:QOZc1s0sHWmAV7LO@mongodb-demo.roz9auo.mongodb.net/school?retryWrites=true&w=majority'
   )
   .then(() => console.log('Db Connnected!!'))
   .catch((err) => console.log(err.message));
@@ -19,4 +19,21 @@ const studentSchema = mongoose.Schema({
   age: Number,
 });
 
-// Create a model
+// Create a model (its a class use to create Document)
+// to create collection
+
+const Student = mongoose.model('Student', studentSchema);
+
+// Student.create({
+//   name: 'John Tiawo',
+//   city: 'Lagos',
+//   course: ['English', 'Computer Science'],
+//   isMarried: false,
+//   age: 29,
+// })
+//   .then((res) => console.log(res))
+//   .catch((err) => console.log(err.message));
+
+Student.find()
+  .then((res) => console.log(res))
+  .catch((err) => console.log(err.message));
