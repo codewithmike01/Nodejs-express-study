@@ -24,6 +24,7 @@ const studentSchema = mongoose.Schema({
 
 const Student = mongoose.model('Student', studentSchema);
 
+// Create Method
 // Student.create({
 //   name: 'John Tiawo',
 //   city: 'Lagos',
@@ -34,6 +35,17 @@ const Student = mongoose.model('Student', studentSchema);
 //   .then((res) => console.log(res))
 //   .catch((err) => console.log(err.message));
 
-Student.find()
+// Delete Record
+// Student.deleteOne({ _id: '644d105a27993d9cc6e62fc2' })
+//   .then((res) => console.log(res))
+//   .catch((err) => console.log(err.message));
+
+Student.findOneAndUpdate(
+  { _id: '644d13731570fc619474699d' },
+  {
+    name: 'Baba Sunday',
+  },
+  { new: true } // Gives you the updated value as response
+)
   .then((res) => console.log(res))
   .catch((err) => console.log(err.message));
