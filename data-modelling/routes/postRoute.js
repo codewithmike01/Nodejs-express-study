@@ -27,3 +27,5 @@ postRouter.get('/', async (req, res) => {
     res.json({ message: err });
   }
 });
+
+module.exports = postRouter;
