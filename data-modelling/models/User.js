@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    posts: Array,
   },
   {
     timestamps: true,
