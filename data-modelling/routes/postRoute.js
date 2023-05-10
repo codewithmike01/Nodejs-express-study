@@ -31,7 +31,10 @@ postRouter.post('/', async (req, res) => {
 // GET /posts
 postRouter.get('/', async (req, res) => {
   try {
-    const posts = await Post.find();
+    const posts = await Post.find().populate({
+      path: 'author',
+      populate: { path: 'posts', model: 'Post' },
+    });
     res.json(posts);
   } catch (err) {
     res.json({ message: err });
