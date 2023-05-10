@@ -2,6 +2,25 @@ const mongoose = require('mongoose');
 
 //  Create Schema
 
+// Embeded
+// const userSchema = new mongoose.Schema(
+//   {
+//     fullName: {
+//       type: String,
+//       required: true,
+//     },
+//     country: {
+//       type: String,
+//       required: true,
+//     },
+//     posts: Array,
+//   },
+//   {
+//     timestamps: true,
+//   }
+// );
+
+// Reference
 const userSchema = new mongoose.Schema(
   {
     fullName: {
@@ -12,7 +31,6 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    posts: Array,
   },
   {
     timestamps: true,

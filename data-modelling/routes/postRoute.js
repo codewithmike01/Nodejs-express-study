@@ -30,7 +30,7 @@ postRouter.post('/', async (req, res) => {
 // GET /posts
 postRouter.get('/', async (req, res) => {
   try {
-    const posts = await Post.find().populate('author');
+    const posts = await Post.find();
     res.json(posts);
   } catch (err) {
     res.json({ message: err });

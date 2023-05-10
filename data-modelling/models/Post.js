@@ -1,5 +1,28 @@
 const mongoose = require('mongoose');
 
+// Embeded
+// const postSchema = new mongoose.Schema(
+//   {
+//     title: {
+//       type: String,
+//       required: true,
+//     },
+//     content: {
+//       type: String,
+//       required: true,
+//     },
+//     author: {
+//       type: mongoose.Schema.Types.ObjectId,
+//       required: true,
+//       ref: 'User',
+//     },
+//   },
+//   {
+//     timestamps: true,
+//   }
+// );
+
+// Reference
 const postSchema = new mongoose.Schema(
   {
     title: {
@@ -9,11 +32,6 @@ const postSchema = new mongoose.Schema(
     content: {
       type: String,
       required: true,
-    },
-    author: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
-      ref: 'User',
     },
   },
   {
