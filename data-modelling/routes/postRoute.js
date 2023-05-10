@@ -13,11 +13,12 @@ postRouter.post('/', async (req, res) => {
       author: req.body.author,
     });
 
-    // Push user field
+    if (!author) return res.json({ status: 400, message: 'User not Found' });
+
+    // Add id of post to author
     author.posts.push(savePost);
 
-    // Save the author
-
+    // Save updated author
     await author.save();
 
     // Response

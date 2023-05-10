@@ -18,7 +18,7 @@ userRouter.post('/', async (req, res) => {
 // GET /users
 userRouter.get('/', async (req, res) => {
   try {
-    const users = await User.find();
+    const users = await User.find().populate('posts');
     res.json(users);
   } catch (err) {
     res.json({ message: err });
