@@ -34,14 +34,25 @@ const userSchema = new mongoose.Schema(
     posts: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'Post',
       },
     ],
   },
   {
+    toJSON: {
+      virtuals: true,
+    },
+  }
+  {
     timestamps: true,
   }
 );
+
+// Virtual Add post count
+
+userSchema.virtual('postCount').get(function () {
+  return this.posts.length;
+});
 
 // Colection to Schema
 

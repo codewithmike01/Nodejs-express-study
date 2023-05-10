@@ -9,6 +9,7 @@ userRouter.post('/', async (req, res) => {
       fullName: req.body.fullName,
       country: req.body.country,
     });
+
     res.json(userSave);
   } catch (err) {
     res.json({ message: err });

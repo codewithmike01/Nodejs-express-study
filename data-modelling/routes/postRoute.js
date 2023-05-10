@@ -7,13 +7,18 @@ const postRouter = express.Router();
 postRouter.post('/', async (req, res) => {
   try {
     author = await User.findById(req.body.author);
+
     const savePost = await Post.create({
       title: req.body.title,
       content: req.body.content,
       author: req.body.author,
     });
 
-    if (!author) return res.json({ status: 400, message: 'User not Found' });
+    console.log('Here author', author);
+
+    if (!author) {
+      return res.json('Error');
+    }
 
     // Add id of post to author
     author.posts.push(savePost);
@@ -24,7 +29,7 @@ postRouter.post('/', async (req, res) => {
     // Response
     res.json(savePost);
   } catch (err) {
-    res.json({ message: err });
+    res.json('Error Here');
   }
 });
 
