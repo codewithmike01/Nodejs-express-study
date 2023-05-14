@@ -15,8 +15,6 @@ const app = express();
 // Enable json response
 app.use(express.json());
 
-
-
 // Listen on Port
 const PORT = process.env.PORT || '3000';
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
@@ -46,17 +44,36 @@ const userSchema = mongoose.Schema({
 const User = mongoose.model('User', userSchema);
 
 // Routes
-app.post('/register', async (req, res) => {
 
+// Register post
+app.post('/register', async (req, res) => {
   try {
-    const userDetails =  await User.create({
+    const userDetails = await User.create({
       fullName: req.body.fullName,
       username: req.body.username,
       password: req.body.password,
-    })
+    });
 
-    return res.json(userDetails)
-  } catch(err) {
-    return res.json(err)
+    return res.json(userDetails);
+  } catch (err) {
+    return res.json(err);
   }
+});
+
+//  Login post
+
+app.post('/login', async (req, res) => {
+  const { username, password } = req.body;
+
+
+  const userFound = await User.findOne({ username })
+  const userPassword = await User.findOne({ password })
+
+  if (!userFound || !userPassword) return res.json('User not found')
+
+  else if(userFound && userPassword) return res.json({
+    "message": "Success",
+    userFound
+  })
+
 });
