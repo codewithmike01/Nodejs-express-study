@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 
 // Connect Db
 mongoose
@@ -47,11 +48,16 @@ const User = mongoose.model('User', userSchema);
 
 // Register post
 app.post('/register', async (req, res) => {
+  const { fullName, username, password } = req.body;
+  const salt = await bcrypt.genSalt(10);
+
+  const hashedPssword = await bcrypt.hash(password, salt);
+  console.log(hashedPssword);
   try {
     const userDetails = await User.create({
-      fullName: req.body.fullName,
-      username: req.body.username,
-      password: req.body.password,
+      fullName,
+      username,
+      password: hashedPssword,
     });
 
     return res.json(userDetails);
@@ -65,15 +71,13 @@ app.post('/register', async (req, res) => {
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
+  const userFound = await User.findOne({ username });
+  const userPassword = await User.findOne({ password });
 
-  const userFound = await User.findOne({ username })
-  const userPassword = await User.findOne({ password })
-
-  if (!userFound || !userPassword) return res.json('User not found')
-
-  else if(userFound && userPassword) return res.json({
-    "message": "Success",
-    userFound
-  })
-
+  if (!userFound || !userPassword) return res.json('User not found');
+  else if (userFound && userPassword)
+    return res.json({
+      message: 'Success',
+      userFound,
+    });
 });
