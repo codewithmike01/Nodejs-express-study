@@ -72,12 +72,15 @@ app.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
   const userFound = await User.findOne({ username });
-  const userPassword = await User.findOne({ password });
 
-  if (!userFound || !userPassword) return res.json('User not found');
-  else if (userFound && userPassword)
-    return res.json({
-      message: 'Success',
-      userFound,
-    });
+  if (!userFound) return res.json({ Message: 'User not found' });
+
+  const isPasswordValid = await bcrypt.compare(password, userFound.password);
+
+  if (!isPasswordValid) return res.json({ Message: 'User not found' });
+
+  return res.json({
+    message: 'Success',
+    userFound,
+  });
 });
