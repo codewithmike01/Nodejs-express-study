@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const session = require('express-session');
 
 // Connect Db
 mongoose
@@ -14,6 +15,7 @@ mongoose
 const app = express();
 
 // Enable json response
+// Middleware
 app.use(express.json());
 
 // Listen on Port
@@ -46,13 +48,23 @@ const User = mongoose.model('User', userSchema);
 
 // Routes
 
+// -----
+// Cookies
+// ------
+
+// Send cookies
+app.get('/send-cookie', (req, res) => {
+  res.cookie('name', 'Mike');
+  res.send('Cookie Sent..');
+});
+
 // Register post
 app.post('/register', async (req, res) => {
   const { fullName, username, password } = req.body;
   const salt = await bcrypt.genSalt(10);
 
   const hashedPssword = await bcrypt.hash(password, salt);
-  console.log(hashedPssword);
+
   try {
     const userDetails = await User.create({
       fullName,
